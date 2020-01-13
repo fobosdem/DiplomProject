@@ -3,13 +3,13 @@ using System.IO;
 
 namespace FileAccessLibrary.WorkerkWithJsonAndFiles
 {
-	public  class JsonWorker
+	public class JsonWorker
 	{
-		private FileStream fileStream;
+		public Chat Chat { get; set; }
 
 		public JsonWorker(Chat chat)
 		{
-			fileStream = new FileStream($@"{chat.Id}\chat.json", FileMode.OpenOrCreate);
+			Chat = chat;
 		}
 
 		public void Create(Chat chat)
@@ -18,7 +18,8 @@ namespace FileAccessLibrary.WorkerkWithJsonAndFiles
 		}
 		public void AddMessage(Message newMessage)
 		{
-
+			this.Chat.Messages.Add(newMessage);
+			//should add save to json
 		}
 		public void DeleteMessage(Message newMessage)
 		{
