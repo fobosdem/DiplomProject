@@ -10,6 +10,17 @@ namespace DataBaseLibrary.Context
 {
 	public class EntitiesContext : DbContext
 	{
+		public EntitiesContext() : base("DBChatConnection")
+		{
+
+		}
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<User>()
+						.HasMany(u => u.Chats)
+						.WithMany(r => r.Users);
+		}
 		public DbSet<Chat> Chats { get; set; }
 		public DbSet<User> Users { get; set; }
 	}

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseLibrary", "DataBase
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileAccessLibrary", "FileAccessLibrary\FileAccessLibrary.csproj", "{DE5FE423-50F2-4525-9A44-829B40333DE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatWebProjectMVC", "ChatWebProjectMVC\ChatWebProjectMVC.csproj", "{4A09F63B-BABD-4DA0-8AD9-C460509804A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DE5FE423-50F2-4525-9A44-829B40333DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE5FE423-50F2-4525-9A44-829B40333DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE5FE423-50F2-4525-9A44-829B40333DE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A09F63B-BABD-4DA0-8AD9-C460509804A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A09F63B-BABD-4DA0-8AD9-C460509804A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A09F63B-BABD-4DA0-8AD9-C460509804A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A09F63B-BABD-4DA0-8AD9-C460509804A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

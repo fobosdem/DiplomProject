@@ -65,5 +65,10 @@ namespace DataBaseLibrary.Repository
             return includeProperties
                 .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
+
+        public TEntity FindByName(Func<TEntity, bool> predicate)
+        {
+            return Get().Where(predicate).First();
+        }
     }
 }
