@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DataBaseLibrary.Repository
 {
-	class ChatRepository
+	public class ChatRepository
 	{
 		EntitiesContext _context;
 
@@ -19,15 +19,23 @@ namespace DataBaseLibrary.Repository
 			_context.Chats.Add(chat);
 			_context.SaveChanges();
 		}
-		public Chat FindById(int id)
+		public Chat FindById(int id, bool includes)
 		{
-			return _context.Chats.Find(id);
+			if (includes)
+			{
+				return _context.Chats.Include(c => c.Users).First(c => c.Id == id);
+			}
+			else
+			{
+				return _context.Chats.Find(id);
+			}
 		}
 		public Chat FindByName(string name)
 		{
 			return _context.Chats.Include(c => c.Users).First(c => c.Name == name);
 		}
-		public IList<Chat> Get(bool includes)
+
+		public IList<Chat> GetAll(bool includes)
 		{
 			if (includes)
 			{
@@ -40,7 +48,7 @@ namespace DataBaseLibrary.Repository
 		}
 		public void Remove(int id)
 		{
-			var chat = FindById(id);
+			var chat = FindById(id, false);
 			_context.Chats.Remove(chat);
 			_context.SaveChanges();
 		}

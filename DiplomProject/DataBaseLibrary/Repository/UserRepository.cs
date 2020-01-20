@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DataBaseLibrary.Repository
 {
-    class UserRepository
+    public class UserRepository
     {
         EntitiesContext _context;
 
@@ -20,9 +20,16 @@ namespace DataBaseLibrary.Repository
             _context.Users.Add(user);
             _context.SaveChanges();
         }
-        public User FindById(int id)
+        public User FindById(int id, bool includes)
         {
-            return _context.Users.Find(id);
+            if (includes)
+            {
+                return _context.Users.Include(c => c.Chats).First(c => c.Id == id);
+            }
+            else
+            {
+                return _context.Users.Find(id);
+            }
         }
         public User FindByName(string name)
         {
@@ -41,7 +48,7 @@ namespace DataBaseLibrary.Repository
         }
         public void Remove(int id)
         {
-            var user = FindById(id);
+            var user = FindById(id, false);
             _context.Users.Remove(user);
             _context.SaveChanges();
         }
