@@ -10,7 +10,7 @@ namespace DataBaseLibrary.Context
 {
 	public class EntitiesContext : DbContext
 	{
-		public EntitiesContext() : base("DBChatConnection")
+		public EntitiesContext() : base("server=DESKTOP-R04KCA7;Initial Catalog=ChatProject;Integrated Security=True")
 		{
 
 		}
