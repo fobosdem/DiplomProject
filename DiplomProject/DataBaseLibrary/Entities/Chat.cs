@@ -7,5 +7,9 @@ namespace DataBaseLibrary.Entities
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public IList<User> Users { get; set; }
+		public Chat()
+		{
+			Users = new List<User>();
+		}
 	}
 }

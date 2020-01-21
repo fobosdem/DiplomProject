@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BLLibrary.BLModels;
+using ChatMVC.Models.ModelsToView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace ChatMVC.Mapping
 	{
 		public MVCMapper()
 		{
+			CreateMap<User, UserBL>().ReverseMap();
+			//CreateMap<ChatBL, Chat>().ReverseMap();
 		}
 	}
 }

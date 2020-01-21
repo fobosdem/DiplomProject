@@ -16,6 +16,12 @@ namespace DataBaseLibrary.Repository
 		}
 		public void Create(Chat chat)
 		{
+			List<User> usersUpdate = new List<User>();
+			foreach(var userFromBL in chat.Users)
+			{
+				usersUpdate.Add(_context.Users.Find(userFromBL.Id));
+			}
+			chat.Users = usersUpdate;
 			_context.Chats.Add(chat);
 			_context.SaveChanges();
 		}

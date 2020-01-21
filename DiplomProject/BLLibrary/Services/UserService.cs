@@ -24,9 +24,14 @@ namespace BLLibrary.Services
 		{
 			_userRepository.Create(Map(user));
 		}
-		public UserBL GetUserByName(string name)
+		public UserBL GetUserByName(string name, bool includeChats)
 		{
-			return Map(_userRepository.FindByName(name));
+			return Map(_userRepository.FindByName(name, includeChats));
+		}
+		public IList<UserBL> Get(bool includes)
+		{
+			var users = Map(_userRepository.Get(includes).ToList());
+			return users;
 		}
 		internal UserBL Map(User user)
 		{
@@ -36,6 +41,14 @@ namespace BLLibrary.Services
 		{
 			return _mapper.Map<User>(user);
 
+		}
+		internal List<UserBL> Map(List<User> users)
+		{
+			return _mapper.Map<List<UserBL>>(users);
+		}
+		internal List<User> Map(List<UserBL> users)
+		{
+			return _mapper.Map<List<User>>(users);
 		}
 	}
 }

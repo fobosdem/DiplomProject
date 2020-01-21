@@ -4,26 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLLibrary.BLModels;
+using DataBaseLibrary.Entities;
+using DataBaseLibrary.Repository;
 
 namespace BLLibrary.Services
 {
 	// first test account:
 	// Login: AdminTest@test.com
+	// 2nd login: TestAdmin2@gmail.com
 	// Password: Admin111/
 	public class MainService
 	{
-		public UserService _userService;
-		public ChatService _chatService;
+		public UserRepository _userService;
+		public ChatRepository _chatService;
 
 		public MainService()
 		{
-			_userService = new UserService();
-			_chatService = new ChatService();
+			_userService = new UserRepository();
+			_chatService = new ChatRepository();
 		}
 		public void CreatingNewUser(string userName, string nickName = null)
 		{
-			ChatBL chat = new ChatBL() { Name = userName, Users = new List<UserBL>() };
-			UserBL user = new UserBL() { Chats = new List<ChatBL>() };
+			Chat chat = new Chat() { Name = "Garbage", Users = new List<User>() };
+			User user = new User() { Chats = new List<Chat>() };
 			if (nickName == null)
 			{
 				user.Name = userName;
@@ -40,10 +43,11 @@ namespace BLLibrary.Services
 		}
 		public void CreateNewChatBetweenUsers(IList<string> userNames)
 		{
-			ChatBL newChat = new ChatBL() { Name = $"{String.Join(", ", userNames.ToArray())}", Users = new List<UserBL>() };
+			Chat newChat = new Chat() { Name = $"{String.Join(", ", userNames.ToArray())}", Users = new List<User>() };
+
 			foreach (string user in userNames)
 			{
-				newChat.Users.Add(_userService.GetUserByName(user));
+				newChat.Users.Add(_userService.FindByName(user, false));
 			}
 			//creating new chat file on server for this chat
 			_chatService.Create(newChat);

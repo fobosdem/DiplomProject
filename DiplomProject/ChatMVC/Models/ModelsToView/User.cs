@@ -7,7 +7,7 @@ namespace ChatMVC.Models.ModelsToView
 {
 	public class User
 	{
-		public string UserName { get; set; }
+		public string Name { get; set; }
 		public string NickName { get; set; }
 	}
 }
