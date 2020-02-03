@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseLibrary", "DataBase
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileAccessLibrary", "FileAccessLibrary\FileAccessLibrary.csproj", "{DE5FE423-50F2-4525-9A44-829B40333DE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatMVC", "ChatMVC\ChatMVC.csproj", "{7C58BD2F-1BBF-4FA3-B90E-F340E0530DAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLibrary", "BLLibrary\BLLibrary.csproj", "{A174CA5F-3D3C-4925-B284-C57859179D99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{DE5FE423-50F2-4525-9A44-829B40333DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE5FE423-50F2-4525-9A44-829B40333DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE5FE423-50F2-4525-9A44-829B40333DE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C58BD2F-1BBF-4FA3-B90E-F340E0530DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C58BD2F-1BBF-4FA3-B90E-F340E0530DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C58BD2F-1BBF-4FA3-B90E-F340E0530DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C58BD2F-1BBF-4FA3-B90E-F340E0530DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A174CA5F-3D3C-4925-B284-C57859179D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A174CA5F-3D3C-4925-B284-C57859179D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A174CA5F-3D3C-4925-B284-C57859179D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A174CA5F-3D3C-4925-B284-C57859179D99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

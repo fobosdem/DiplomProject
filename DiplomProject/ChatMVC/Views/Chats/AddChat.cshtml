@@ -1,0 +1,24 @@
+﻿
+@model IEnumerable<ChatMVC.Models.ModelsToView.User>
+
+@{
+    ViewBag.Title = "AddChat";
+}
+
+<h2>AddChat</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<form method="post">
+    <select id="Users" name="Users">
+        @foreach (var user in Model)
+        {
+            <option value="@user.Name">@user.Name</option>
+        }
+    </select>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+    <div>@Html.ActionLink("All Chats", "ChatsList", "Chats")</div>
+</form>
