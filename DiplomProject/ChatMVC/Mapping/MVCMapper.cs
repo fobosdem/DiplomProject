@@ -13,6 +13,8 @@ namespace ChatMVC.Mapping
 		public MVCMapper()
 		{
 			CreateMap<User, UserBL>().ReverseMap();
+			CreateMap<ChatView, ChatBL>().ReverseMap();
+			CreateMap<MessageView, MessageBl>().ReverseMap();
 			//CreateMap<ChatBL, Chat>().ReverseMap();
 		}
 	}

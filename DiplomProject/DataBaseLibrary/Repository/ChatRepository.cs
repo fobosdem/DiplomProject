@@ -14,7 +14,7 @@ namespace DataBaseLibrary.Repository
 		{
 			_context = new EntitiesContext();
 		}
-		public void Create(Chat chat)
+		public int Create(Chat chat)
 		{
 			List<User> usersUpdate = new List<User>();
 			foreach(var userFromBL in chat.Users)
@@ -24,6 +24,7 @@ namespace DataBaseLibrary.Repository
 			chat.Users = usersUpdate;
 			_context.Chats.Add(chat);
 			_context.SaveChanges();
+			return chat.Id;
 		}
 		public Chat FindById(int id, bool includes)
 		{

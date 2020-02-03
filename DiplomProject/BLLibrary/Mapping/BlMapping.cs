@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileAccessLibrary.Entities;
 
 namespace BLLibrary.Mapping
 {
@@ -15,6 +16,7 @@ namespace BLLibrary.Mapping
 		{
 			CreateMap<UserBL, User>().ReverseMap();
 			CreateMap<ChatBL, Chat>().ReverseMap();
+			CreateMap<MessageBl, Message>().ReverseMap();
 		}
 	}
 }

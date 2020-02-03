@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLModels\ChatBL.cs" />
+    <Compile Include="BLModels\MessageBl.cs" />
     <Compile Include="BLModels\UserBL.cs" />
     <Compile Include="Mapping\BlMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +57,10 @@
     <ProjectReference Include="..\DataBaseLibrary\DataBaseLibrary.csproj">
       <Project>{c396af22-d4f3-40f1-9546-3269e93bebc1}</Project>
       <Name>DataBaseLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileAccessLibrary\FileAccessLibrary.csproj">
+      <Project>{de5fe423-50f2-4525-9a44-829b40333de1}</Project>
+      <Name>FileAccessLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

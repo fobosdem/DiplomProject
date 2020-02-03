@@ -191,7 +191,11 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModelsToView\ChatView.cs" />
+    <Compile Include="Models\ModelsToView\CurrentChat.cs" />
+    <Compile Include="Models\ModelsToView\MessageView.cs" />
     <Compile Include="Models\ModelsToView\User.cs" />
+    <Compile Include="Models\ModelsToView\UserChats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,6 +256,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Chats\AddChat.cshtml" />
+    <Content Include="Views\Chats\ChatsList.cshtml" />
+    <Content Include="Views\Chats\ChatWithUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

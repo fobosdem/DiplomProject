@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using BLLibrary.BLModels;
 using DataBaseLibrary.Entities;
 using DataBaseLibrary.Repository;
+using FileAccessLibrary.WorkerkWithJsonAndFiles;
+using FileAccessLibrary.Entities;
+using AutoMapper;
+using BLLibrary.Mapping;
 
 namespace BLLibrary.Services
 {
@@ -17,11 +21,15 @@ namespace BLLibrary.Services
 	{
 		public UserRepository _userService;
 		public ChatRepository _chatService;
+		private readonly IMapper _mapper;
+
 
 		public MainService()
 		{
 			_userService = new UserRepository();
 			_chatService = new ChatRepository();
+			_mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(new BlMapping())));
+
 		}
 		public void CreatingNewUser(string userName, string nickName = null)
 		{
@@ -41,7 +49,7 @@ namespace BLLibrary.Services
 			//creating new chat file on server for this chat
 			_userService.Create(user);
 		}
-		public void CreateNewChatBetweenUsers(IList<string> userNames)
+		public int CreateNewChatBetweenUsers(IList<string> userNames)
 		{
 			Chat newChat = new Chat() { Name = $"{String.Join(", ", userNames.ToArray())}", Users = new List<User>() };
 
@@ -50,7 +58,21 @@ namespace BLLibrary.Services
 				newChat.Users.Add(_userService.FindByName(user, false));
 			}
 			//creating new chat file on server for this chat
-			_chatService.Create(newChat);
+			int idChat = _chatService.Create(newChat);
+			
+			JsonWorker jsonWorker = new JsonWorker(idChat);
+			return idChat;
+		}
+		public void SendMessage(string message, int chatId, string userName)
+		{
+			JsonWorker jsonWorker = new JsonWorker(chatId);
+			jsonWorker.AddMessage(new Message() { Text = message, UserName = userName});
+		}
+		public List<MessageBl> GetAllMessagesByChat(int chatId)
+		{
+			JsonWorker jsonWorker = new JsonWorker(chatId);
+			List<MessageBl> allMessages = _mapper.Map<List<MessageBl>>(jsonWorker.GetMessages());
+			return allMessages;
 		}
 	}
 }

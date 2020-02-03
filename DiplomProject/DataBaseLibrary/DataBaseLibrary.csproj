@@ -79,6 +79,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileAccessLibrary\FileAccessLibrary.csproj">
+      <Project>{de5fe423-50f2-4525-9a44-829b40333de1}</Project>
+      <Name>FileAccessLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

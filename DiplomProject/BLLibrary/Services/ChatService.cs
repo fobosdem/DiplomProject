@@ -24,6 +24,10 @@ namespace BLLibrary.Services
 		{
 			_chatRepository.Create(Map(chat));
 		}
+		public List<ChatBL> GetAll()
+		{
+			return Map(_chatRepository.GetAll(false).ToList());
+		}
 
 		internal ChatBL Map(Chat chat)
 		{
@@ -32,6 +36,15 @@ namespace BLLibrary.Services
 		internal Chat Map(ChatBL chat)
 		{
 			return _mapper.Map<Chat>(chat);
+
+		}
+		internal List<ChatBL> Map(List<Chat> chat)
+		{
+			return _mapper.Map<List<ChatBL>>(chat);
+		}
+		internal List<Chat> Map(List<ChatBL> chat)
+		{
+			return _mapper.Map<List<Chat>>(chat);
 
 		}
 	}

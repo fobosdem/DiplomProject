@@ -3,11 +3,9 @@ using System.Collections.Generic;
 
 namespace FileAccessLibrary.Entities
 {
-	public class Chat
+	public class JsonChat
 	{
 		public int Id { get; set; }
-		public DateTime CreateDate { get; set; }
-		public string CreatorNick { get; set; }
-		public IList<Message> Messages { get; set; }
+		public List<Message> Messages { get; set; }
 	}
 }
