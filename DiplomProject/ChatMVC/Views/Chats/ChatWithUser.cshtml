@@ -1,54 +1,78 @@
-﻿@model ChatMVC.Models.ModelsToView.CurrentChat
+﻿@model ChatMVC.Models.ModelsToView.MessagesPlusChatView
 
-@{
-    ViewBag.Title = "ChatWithUser";
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="../../Content/ChatStyle.css" />
+    <link type="text/css" rel="stylesheet" href="../../Content/Site.css" />
+</head>
+<body>
+    <div class="container chat-window">
+        <div class="row">
 
-<h2>ChatWithUser</h2>
-<ul>
-    @foreach (var item in Model.Messages)
-    {
-        
-            <li>
-                <b>@item.UserName.Split('@').First()</b>: @Html.DisplayFor(modelItem => item.Text)
-            </li>
-        
-    }
-</ul>
-@using (Html.BeginForm())
-{
+            <div class="col-md-2 chats-bar">
+                @Html.ActionLink($"Добавить чат", "AddChat", "Chats", new { @class = "btn btn-default chats-bar-chat" })
+                <div class="chats-bar-label">Список чатов</div>
+                @foreach (var chat in Model.chatViews)
+                {
+                    @Html.ActionLink($"{chat.Name}", "ChatWithUser", "Chats", new { id = chat.Id }, new { @class = "btn btn-default chats-bar-chat" })
+                }
+            </div>
+            <div class="col-md-10 scroll" id="scrollToBot">
+                @if (Model.currentChat != null)
+                {
+                    <div style="padding-left: 26px; padding-right: 26px" id="a1">
+
+                        @foreach (var item in Model.currentChat.Messages)
+                        {
+
+                            if (item.UserName == ViewBag.Text)
+                            {
+                                <div class="from-me p"><p>@Html.DisplayFor(modelItem => item.Text)</p></div>
+                            }
+                            else
+                            {
+                                <div class="from-them p"><p> @Html.DisplayFor(modelItem => item.Text)</p></div>
+
+                            }
+                        }
+
+                    </div>
+                    <div class="chat-bar">
+                        @using (Html.BeginForm("ChatWithUser", "Chats", FormMethod.Post))
+                        {
+
+                            <input type="hidden" value="@Model.currentChat.Id" name="id" />
 
 
+                            <div class="input-group">
 
-
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Send message</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NewMessage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NewMessage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NewMessage, "", new { @class = "text-danger" })
+                                <input class="form-control" style="max-width: none; padding-right: 5px" type="text" name="message" placeholder="Введите сообщение ">
+                                <span class="input-group-btn">
+                                    <input type="submit" value="Отправить" class="btn btn-default" />
+                                </span>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <h1>Выберите чат</h1>
+                }
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/jscript">
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    $(document.querySelector("#a1")).ready(() => {
+        var element = document.getElementById("scrollToBot");
+        element.scrollTop = element.scrollHeight - element.clientHeight;
+    })
+</script> 

@@ -17,7 +17,6 @@ namespace ChatMVC.Controllers
 		private readonly UserService _userService;
 		private readonly ChatService _chatService;
 		private readonly MainService _mainService;
-		private int _currentChatId { get; set; }
 		//private readonly string _loginedUserName;
 
 		public ChatsController()
@@ -36,13 +35,29 @@ namespace ChatMVC.Controllers
 		[HttpGet]
 		public ActionResult AddChat()
 		{
-			List<User> usersList = _mapper.Map<List<User>>(_userService.Get(false).Where(u => u.Name != User.Identity.Name));
-			return View(usersList);
+			List<User> usersList = _mapper.Map<List<User>>(_userService.Get(true).Where(u => u.Name != User.Identity.Name));
+			List<User> users = new List<User>();
+			foreach (var user in usersList)
+			{
+				if (!user.Chats.Any(c => c.Name.Contains(User.Identity.Name)))
+				{
+					users.Add(user);
+				}
+			}
+			return View(users);
 		}
 		[HttpPost]
 		public ActionResult AddChat(FormCollection form)
 		{
 			string name1 = form["Users"].ToString();
+			List<ChatView> UserChats = _mapper.Map<User>(_userService.Get(true).First(u => u.Name == User.Identity.Name)).Chats;
+			foreach (var chat in UserChats)
+			{
+				if (chat.Name.Contains(name1))
+				{
+					return Redirect("addchat");
+				}
+			}
 			List<string> users = new List<string>() { name1, User.Identity.Name.ToString() };
 			_mainService.CreateNewChatBetweenUsers(users);
 			return Redirect("addchat");
@@ -54,22 +69,42 @@ namespace ChatMVC.Controllers
 			return View(user.Chats);
 		}
 		[HttpGet]
-		public ActionResult ChatWithUser(int id)
+		public ActionResult ChatWithUser(int id = 0)
 		{
-			_currentChatId = id;
-			List<MessageView> messages = _mapper.Map<List<MessageView>>(_mainService.GetAllMessagesByChat(id));
-			CurrentChat currentChat = new CurrentChat() { Id = id, Messages = messages, NewMessage = "" };
-			return View(currentChat);
+			CurrentChat currentChat = null;
+			if (id != 0)
+			{
+				List<MessageView> messages = _mapper.Map<List<MessageView>>(_mainService.GetAllMessagesByChat(id));
+				currentChat = new CurrentChat() { Id = id, Messages = messages, NewMessage = "" };
+			}
+
+			ViewBag.Text = User.Identity.Name;
+
+			List<ChatView> chatsToView = _mapper.Map<User>(_userService.Get(true).First(u => u.Name == User.Identity.Name)).Chats;
+
+			for (int i = 0; i < chatsToView.Count(); i++)
+			{
+				if (chatsToView[i].Name == User.Identity.Name)
+				{
+					chatsToView[i].Name = "Избранное";
+				}
+				else
+				{
+					chatsToView[i].Name = chatsToView[i].Name.Split(',').First(name => !name.Contains(User.Identity.Name)).Trim().Split('@').First();
+				}
+
+			}
+
+			MessagesPlusChatView messagesPlusChatView = new MessagesPlusChatView() { currentChat = currentChat, chatViews = chatsToView };
+
+			return View(messagesPlusChatView);
 		}
 		[HttpPost]
-		public ActionResult ChatWithUser(CurrentChat currentChat)
+		public ActionResult ChatWithUser(int id, string message)
 		{
-			_mainService.SendMessage(currentChat.NewMessage, currentChat.Id, User.Identity.Name);
-			List<MessageView> messages = _mapper.Map<List<MessageView>>(_mainService.GetAllMessagesByChat(currentChat.Id));
-			currentChat.Messages = messages;
-			//return Redirect($@"ChatWithUser/{currentChat.Id}");
-			currentChat.NewMessage = "";
-			return View(currentChat);
+			_mainService.SendMessage(message, id, User.Identity.Name);
+
+			return ChatWithUser(id);
 		}
 		//public ActionResult SendMessage(string newMessage)
 		//{

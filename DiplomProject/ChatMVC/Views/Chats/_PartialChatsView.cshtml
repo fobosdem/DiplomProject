@@ -1,0 +1,22 @@
+﻿@model ChatMVC.Models.ModelsToView.CurrentChat
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body style="margin: 0;">
+    <div style="width: 300px; margin: 0; background-color: green; height: 100vh;">
+        @foreach (var chat in Model.Messages)
+        {
+        <div style="margin: 5px; margin-top: 0;padding: 5px;border-radius: 5px; background-color: red; border-width: 1px; max-width: 250px; height: 25px; text-align: center;">@Html.DisplayFor(modelItem => chat.Text)</div>
+        }
+    </div>
+</body>
+
+</html>

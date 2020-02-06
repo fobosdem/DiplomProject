@@ -1,0 +1,103 @@
+﻿/*@use postcss-nested;*/
+
+/*body {
+	font-family: "Helvetica Neue";
+	font-size: 20px;
+	font-weight: normal;
+	margin: 50px auto;
+	display: flex;
+	flex-direction: column;
+}*/
+p {
+	word-wrap: break-word;
+	max-width: 30vw;
+	text-align: left;
+}
+
+div.p {
+	display: block;
+	margin-bottom: 12px;
+	margin-left: auto;
+	margin-right: 0;
+}
+
+div p {
+	display: inline-block;
+	padding: 10px 20px;
+	line-height: 24px;
+	border-radius: 25px;
+	position: relative;
+}
+
+div.from-me {
+	text-align: right;
+}
+
+	div.from-me p {
+		color: white;
+		background: #0B93F6;
+		align-self: flex-start;
+	}
+
+
+		div.from-me p::before, div.p p::after {
+			content: "";
+			position: absolute;
+			bottom: -2px;
+			height: 20px;
+		}
+
+
+
+		div.from-me p::before {
+			right: -7px;
+			border-right: 20px solid #0B93F6;
+			border-bottom-left-radius: 16px 14px;
+			transform: translate(0, -2px);
+		}
+
+		div.from-me p::after {
+			right: -56px;
+			width: 26px;
+			background: white;
+			border-bottom-left-radius: 10px;
+			transform: translate(-30px, -2px);
+		}
+
+
+
+div.from-them {
+	text-align: left;
+}
+
+	div.from-them p {
+		background: #E5E5EA;
+		color: black;
+		align-self: flex-end;
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+		div.from-them p::before, div.p p::after {
+			content: "";
+			position: absolute;
+			bottom: -2px;
+			height: 20px;
+		}
+
+
+
+div.from-them p::before {
+	left: -7px;
+	border-left: 20px solid #E5E5EA;
+	border-bottom-right-radius: 16px 14px;
+	transform: translate(0, -2px);
+}
+
+div.from-them p::after {
+	left: 4px;
+	width: 26px;
+	background: white;
+	border-bottom-right-radius: 10px;
+	transform: translate(-30px, -2px);
+}

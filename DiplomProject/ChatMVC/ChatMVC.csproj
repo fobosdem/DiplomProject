@@ -193,6 +193,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelsToView\ChatView.cs" />
     <Compile Include="Models\ModelsToView\CurrentChat.cs" />
+    <Compile Include="Models\ModelsToView\MessagesPlusChatView.cs" />
     <Compile Include="Models\ModelsToView\MessageView.cs" />
     <Compile Include="Models\ModelsToView\User.cs" />
     <Compile Include="Models\ModelsToView\UserChats.cs" />
@@ -204,6 +205,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ChatStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -258,6 +260,9 @@
     <Content Include="Views\Chats\AddChat.cshtml" />
     <Content Include="Views\Chats\ChatsList.cshtml" />
     <Content Include="Views\Chats\ChatWithUser.cshtml" />
+    <Content Include="Views\Shared\_AllChats.cshtml" />
+    <Content Include="Views\Shared\_ChatsView.cshtml" />
+    <Content Include="Views\Chats\_PartialChatsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

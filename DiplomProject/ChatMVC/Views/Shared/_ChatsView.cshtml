@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ChatMVC.Models.ModelsToView.ChatView>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body style="margin: 0;">
+    <div style="width: 300px; margin: 0; background-color: green; height: 100vh;">
+        @foreach (var chat in Model)
+        {
+        <div style="margin: 5px; margin-top: 0;padding: 5px;border-radius: 5px; background-color: red; border-width: 1px; max-width: 250px; height: 25px; text-align: center;">@chat.Name</div>
+        }
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+    @RenderBody()
+</table>*@
