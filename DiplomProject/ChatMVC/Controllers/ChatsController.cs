@@ -49,18 +49,21 @@ namespace ChatMVC.Controllers
 		[HttpPost]
 		public ActionResult AddChat(FormCollection form)
 		{
-			string name1 = form["Users"].ToString();
-			List<ChatView> UserChats = _mapper.Map<User>(_userService.Get(true).First(u => u.Name == User.Identity.Name)).Chats;
-			foreach (var chat in UserChats)
+			if (form["Users"].Any())
 			{
-				if (chat.Name.Contains(name1))
+				string name1 = form["Users"].ToString();
+				List<ChatView> UserChats = _mapper.Map<User>(_userService.Get(true).First(u => u.Name == User.Identity.Name)).Chats;
+				foreach (var chat in UserChats)
 				{
-					return Redirect("addchat");
+					if (chat.Name.Contains(name1))
+					{
+						return Redirect("addchat");
+					}
 				}
+				List<string> users = new List<string>() { name1, User.Identity.Name.ToString() };
+				_mainService.CreateNewChatBetweenUsers(users);
 			}
-			List<string> users = new List<string>() { name1, User.Identity.Name.ToString() };
-			_mainService.CreateNewChatBetweenUsers(users);
-			return Redirect("addchat");
+			return Redirect("ChatWithUser");
 		}
 		[HttpGet]
 		public ActionResult ChatsList()

@@ -19,6 +19,10 @@
                 {
                     @Html.ActionLink($"{chat.Name}", "ChatWithUser", "Chats", new { id = chat.Id }, new { @class = "btn btn-default chats-bar-chat" })
                 }
+               @Html.Partial("_LoginPartial")
+
+               @* @Html.ActionLink("LogOut", "LogOff", "Account", new { @class = "btn btn-default chats-bar-log-off" })*@
+
             </div>
             <div class="col-md-10 scroll" id="scrollToBot">
                 @if (Model.currentChat != null)
@@ -75,4 +79,5 @@
         var element = document.getElementById("scrollToBot");
         element.scrollTop = element.scrollHeight - element.clientHeight;
     })
+    setTimeout(function(){ location.reload(); }, 3000);
 </script> 

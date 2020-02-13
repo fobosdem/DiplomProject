@@ -6,10 +6,8 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        @**@<div style="bottom: 5vh"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></div>*@
+        @*<div class="btn btn-default chats-bar-log-off" ="javascript:document.getElementById('logoutForm').submit()">Log off</div>*@
     </ul>
     }
 }

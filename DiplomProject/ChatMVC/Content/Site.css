@@ -27,11 +27,10 @@ textarea {
 }
 
 div.scroll {
-	top: 5vh;
 	margin: 4px, 4px;
 	padding: 5px;
 	width: 85vw;
-	height: 90vh;
+	height: 95vh;
 	overflow-x: hidden;
 	overflow-x: auto;
 	text-align: justify;
@@ -43,9 +42,8 @@ div.scroll {
 }
 
 .chats-bar {
-	top: 5vh;
 	width: 15vw;
-	height: 95vh;
+	height: 100vh;
 	margin: 0;
 	background-color: #222;
 	overflow-x: auto;
@@ -110,4 +108,21 @@ div.scroll {
 	border-width: 1px;
 	border-bottom-width: 0px;
 	border-top-width: 0px;
+}
+.chats-bar-log-off {
+	position: absolute;
+	margin: 0;
+	bottom: 2vh;
+	left: 10px;
+	top: auto;
+	margin-bottom: 5px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #828080;
+	color: white;
+	border-width: 1px;
+	max-width: 13vw;
+	width: 7vw;
+	height: 4vh;
+	text-align: center;
 }
